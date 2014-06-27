@@ -19,6 +19,12 @@ else ()
 	message(FATAL_ERROR "Your C++ compiler does not support C++11.")
 endif ()
 
+if (NOT EXISTS "test/gmock-1.7.0/")
+  execute_process(COMMAND mkdir -p ${CMAKE_SOURCE_DIR}/test )
+  execute_process(COMMAND wget https://googlemock.googlecode.com/files/gmock-1.7.0.zip -O ${CMAKE_SOURCE_DIR}/test/gmock.zip)
+  execute_process(COMMAND unzip gmock.zip WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test)
+endif()
+
 enable_testing()
 include_directories(.)
 add_subdirectory(test/gmock-1.7.0)
