@@ -25,6 +25,8 @@ if (NOT EXISTS "test/gmock-1.7.0/")
   execute_process(COMMAND unzip gmock.zip WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test)
 endif()
 
+find_package(boost)
+
 enable_testing()
 include_directories(.)
 add_subdirectory(test/gmock-1.7.0)
