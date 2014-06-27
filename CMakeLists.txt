@@ -3,7 +3,7 @@ project(cmake_cpp11 CXX)
 
 include(cmake/util.cmake)
 
-set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wunused-value -std=c++11 -fPIC")
 
 include(CheckCXXCompilerFlag)
 # Compiler-specific C++11 activation.
