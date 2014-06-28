@@ -1,7 +1,7 @@
 add_library (vobla SHARED status.cpp command.cpp)
 
 include_directories(${gtest_SOURCE_DIR}/include)
-include(../cmake/util.cmake)
+include(../cmake_modules/util.cmake)
 
 set(TEST_LIBS vobla gtest gmock_main)
 

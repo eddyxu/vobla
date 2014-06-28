@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(cmake_cpp11 CXX)
 
-include(cmake/util.cmake)
+include(cmake_modules/util.cmake)
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wunused-value -std=c++11 -fPIC")
 
