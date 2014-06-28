@@ -1,4 +1,8 @@
-add_library (vobla SHARED status.cpp command.cpp)
+add_library (vobla
+	command.cpp
+	sysinfo.cpp
+	status.cpp
+	)
 
 include_directories(${gtest_SOURCE_DIR}/include)
 include(../cmake_modules/util.cmake)

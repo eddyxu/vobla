@@ -34,11 +34,11 @@ class Command : boost::noncopyable {
 
   virtual ~Command();
 
-  virtual Status parseArgs(int argc, char* argv[]) = 0;
+  virtual Status ParseArgs(int argc, char* argv[]) = 0;
 
-  virtual Status run() = 0;
+  virtual Status Run() = 0;
 
-  virtual void printHelp() = 0;
+  virtual void PrintHelp() = 0;
 };
 
 }  // namespace vobla
