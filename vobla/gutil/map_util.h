@@ -69,7 +69,6 @@
 #include <vector>
 
 #include <glog/logging.h>
-#include "supersonic/utils/logging-inl.h"
 
 namespace util {
 namespace gtl {

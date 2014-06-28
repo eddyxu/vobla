@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 (c) Lei Xu <eddyxu@gmail.com>
+ * Copyright 2014 (c) Lei Xu <eddyxu@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,28 +63,28 @@ Status& Status::operator=(Status&& rhs) {
   return *this;
 }
 
-void Status::set(int code, const string& new_msg) {
+void Status::Set(int code, const string& new_msg) {
   code_ = code;
   message_ = new_msg;
 }
 
-void Status::set_error(int code) {
+void Status::SetError(int code) {
   code_ = code;
 }
 
-int Status::error() const {
+int Status::Error() const {
   return code_;
 }
 
-void Status::set_message(const string& new_msg) {
+void Status::SetMessage(const string& new_msg) {
   message_ = new_msg;
 }
 
-const string& Status::message() const {
+const string& Status::Message() const {
   return message_;
 }
 
-bool Status::ok() const {
+bool Status::Ok() const {
   return code_ == 0;
 }
 

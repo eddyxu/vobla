@@ -58,22 +58,22 @@ class Status {
   Status& operator=(Status&& rhs);
 
   /// Returns the error code.
-  int error() const;
+  int Error() const;
 
   /// Sets the code and message to a new value.
-  void set(int code, const std::string& message);
+  void Set(int code, const std::string& message);
 
   /// Sets the new error code.
-  void set_error(int code);
+  void SetError(int code);
 
   /// Returns the error message.
-  const std::string& message() const;
+  const std::string& Message() const;
 
   /// Sets the new error message.
-  void set_message(const std::string& message);
+  void SetMessage(const std::string& message);
 
   /// Tests whether the error code is zero.
-  bool ok() const;
+  bool Ok() const;
 
   /// A static Status object to represent the OK status.
   static const Status OK;

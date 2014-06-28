@@ -30,14 +30,14 @@ namespace vobla {
 TEST(StatusTest, TestConstructors) {
   // Default constructor
   Status s;
-  EXPECT_TRUE(s.ok());
-  EXPECT_EQ(0, s.error());
-  EXPECT_TRUE(s.message().empty());
+  EXPECT_TRUE(s.Ok());
+  EXPECT_EQ(0, s.Error());
+  EXPECT_TRUE(s.Message().empty());
 
   Status s1(0, "SUCCESS");
-  EXPECT_TRUE(s1.ok());
-  EXPECT_EQ(0, s1.error());
-  EXPECT_EQ("SUCCESS", s1.message());
+  EXPECT_TRUE(s1.Ok());
+  EXPECT_EQ(0, s1.Error());
+  EXPECT_EQ("SUCCESS", s1.Message());
 
   EXPECT_NE(s, s1);
 
@@ -49,42 +49,42 @@ TEST(StatusTest, TestConstructors) {
   EXPECT_EQ(s3, s4);
 
   Status s5;
-  EXPECT_TRUE(s5.ok());
-  s5.set(1, "test failure");
-  EXPECT_FALSE(s5.ok());
+  EXPECT_TRUE(s5.Ok());
+  s5.Set(1, "test failure");
+  EXPECT_FALSE(s5.Ok());
   EXPECT_EQ(s2, s5);
 }
 
 TEST(StatusTest, TestConstructFromSystemError) {
   Status s = Status::system_error(ENOENT);
-  EXPECT_EQ(-ENOENT, s.error());
-  EXPECT_EQ("No such file or directory", s.message());
+  EXPECT_EQ(-ENOENT, s.Error());
+  EXPECT_EQ("No such file or directory", s.Message());
 
   s = Status::system_error(EACCES);
-  EXPECT_EQ(-EACCES, s.error());
-  EXPECT_EQ("Permission denied", s.message());
+  EXPECT_EQ(-EACCES, s.Error());
+  EXPECT_EQ("Permission denied", s.Message());
 }
 
 TEST(StatusTest, TestMoveConstructors) {
   Status s(1, "This is a test.");
   Status s1 = std::move(s);
-  EXPECT_EQ(1, s1.error());
-  EXPECT_EQ(0, s.error());
-  EXPECT_EQ(string("This is a test."), s1.message());
-  EXPECT_TRUE(s.message().empty());
+  EXPECT_EQ(1, s1.Error());
+  EXPECT_EQ(0, s.Error());
+  EXPECT_EQ(string("This is a test."), s1.Message());
+  EXPECT_TRUE(s.Message().empty());
 
   Status s2;
   s2 = std::move(s1);
-  EXPECT_EQ(1, s2.error());
-  EXPECT_EQ(0, s1.error());
-  EXPECT_EQ(string("This is a test."), s2.message());
-  EXPECT_TRUE(s.message().empty());
+  EXPECT_EQ(1, s2.Error());
+  EXPECT_EQ(0, s1.Error());
+  EXPECT_EQ(string("This is a test."), s2.Message());
+  EXPECT_TRUE(s.Message().empty());
 }
 
 TEST(StatusTest, TestSetterAndGetter) {
   Status s;
-  s.set_error(10);
-  s.set_message("10");
+  s.SetError(10);
+  s.SetMessage("10");
   EXPECT_EQ(Status(10, "10"), s);
 }
 
