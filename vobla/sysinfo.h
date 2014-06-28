@@ -24,6 +24,7 @@
 
 #include <sys/types.h>
 #include <string>
+#include "vobla/gutil/macros.h"
 
 namespace vobla {
 
@@ -56,7 +57,7 @@ class SysInfo {
   static int GetProcessName(pid_t pid, std::string* name);
 
  private:
-  SysInfo() = delete;
+  DISALLOW_IMPLICIT_CONSTRUCTORS(SysInfo);
 };
 
 }  // namespace vobla
