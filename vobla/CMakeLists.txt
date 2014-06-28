@@ -16,3 +16,5 @@ foreach(testFile ${TEST_FILES})
 	string(REGEX REPLACE ".cpp\$" "" testName "${testFile}")
 	cxx_test("${testName}" "${TEST_LIBS}")
 endforeach(testFile)
+
+add_subdirectory(gutil)
