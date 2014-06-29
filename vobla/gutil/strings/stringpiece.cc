@@ -6,10 +6,13 @@
 
 #include <string.h>
 #include <algorithm>
+#include "vobla/gutil/std_namespace.h"
 #include <climits>
 #include <string>
+namespace vobla {using std::string; }
 
 #include <glog/logging.h>
+#include "vobla/gutil/logging-inl.h"
 #include "vobla/gutil/strings/memutil.h"
 #include "vobla/gutil/stl_util.h"
 #include "vobla/gutil/hash/hash.h"

@@ -15,6 +15,7 @@
 #define STRINGS_JOIN_INTERNAL_H_
 
 #include <string>
+namespace vobla {using std::string; }
 
 #include "vobla/gutil/strings/strcat.h"
 

@@ -12,7 +12,9 @@
 #include <time.h>
 #include <functional>
 #include <limits>
+#include "vobla/gutil/std_namespace.h"
 #include <string>
+namespace vobla {using std::string; }
 #include <vector>
 using std::vector;
 

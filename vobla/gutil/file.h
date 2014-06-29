@@ -20,6 +20,7 @@
 #define SUPERSONIC_OPENSOURCE_FILE_FILE_H_
 
 #include <string>
+namespace vobla {using std::string; }
 
 #include "vobla/gutil/integral_types.h"
 #include "vobla/gutil/macros.h"

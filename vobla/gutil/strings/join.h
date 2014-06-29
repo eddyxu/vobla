@@ -13,10 +13,15 @@
 #include <unordered_map>  // Not used in this file.
 #include <unordered_set>  // Not used in this file.
 #include <iterator>
+#include "vobla/gutil/std_namespace.h"
 #include <map>
+using std::map;
 #include <set>
+#include "vobla/gutil/std_namespace.h"
 #include <string>
+namespace vobla {using std::string; }
 #include <utility>
+#include "vobla/gutil/std_namespace.h"
 #include <vector>
 using std::vector;
 

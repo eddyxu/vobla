@@ -24,9 +24,12 @@
 
 #include <stddef.h>
 #include <algorithm>
+#include "vobla/gutil/std_namespace.h"
 #include <functional>
 #include <iterator>
+#include "vobla/gutil/std_namespace.h"
 #include <utility>
+#include "vobla/gutil/std_namespace.h"
 
 namespace util {
 namespace gtl {

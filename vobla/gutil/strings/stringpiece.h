@@ -120,11 +120,14 @@
 #include <unordered_map>
 #include <iosfwd>
 #include <limits>
+#include "vobla/gutil/std_namespace.h"
 #include <string>
+namespace vobla {using std::string; }
 
 #include "vobla/gutil/integral_types.h"
 #include "vobla/gutil/port.h"
 #include <type_traits>
+#include "vobla/gutil/std_namespace.h"
 #include "vobla/gutil/strings/fastmem.h"
 #include "vobla/gutil/hash/hash.h"
 
@@ -355,6 +358,11 @@ class StringPiece {
 
   StringPiece substr(size_type pos, size_type n = npos) const;
 };
+
+#ifndef SWIG
+// Enable use of StringPiece in small_set and other google collections.
+DECLARE_POD(StringPiece);
+#endif
 
 // This large function is defined inline so that in a fairly common case where
 // one of the arguments is a literal, the compiler can elide a lot of the

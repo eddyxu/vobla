@@ -23,10 +23,11 @@
 #include <vector>
 using std::vector;
 
-#include <glog/logging.h>
 #include "vobla/gutil/walltime.h"
 #include "vobla/gutil/timer.h"
 #include "vobla/gutil/port.h"
+#include <glog/logging.h>
+#include "vobla/gutil/logging-inl.h"
 #include "vobla/gutil/stringprintf.h"
 
 using std::vector;

@@ -64,11 +64,16 @@
 
 #include <stddef.h>
 #include <iterator>
+#include "vobla/gutil/std_namespace.h"
 #include <string>
+namespace vobla {using std::string; }
 #include <utility>
+#include "vobla/gutil/std_namespace.h"
 #include <vector>
+using std::vector;
 
 #include <glog/logging.h>
+#include "vobla/gutil/logging-inl.h"
 
 namespace util {
 namespace gtl {

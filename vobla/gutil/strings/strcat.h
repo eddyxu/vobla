@@ -8,6 +8,7 @@
 #define STRINGS_STRCAT_H_
 
 #include <string>
+namespace vobla {using std::string; }
 
 #include "vobla/gutil/integral_types.h"
 #include "vobla/gutil/macros.h"
