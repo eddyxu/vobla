@@ -29,27 +29,22 @@
 #include <string.h>
 
 #include <algorithm>
-#include "vobla/gutil/std_namespace.h"
 #include <cassert>
 #include <deque>
 using std::deque;
 #include <functional>
 #include <iterator>
-#include "vobla/gutil/std_namespace.h"
 #include <map>
 using std::map;
 #include <memory>
 #include <string>
-namespace vobla {using std::string; }
 #include <vector>
-using std::vector;
 
+#include <type_traits>
 #include "vobla/gutil/integral_types.h"
 #include "vobla/gutil/macros.h"
 #include "vobla/gutil/port.h"
 #include "vobla/gutil/template_util.h"
-#include <type_traits>
-#include "vobla/gutil/std_namespace.h"
 #include "vobla/gutil/algorithm.h"
 
 namespace util {
@@ -608,8 +603,8 @@ struct TransparentLess {
 template<typename In1, typename In2, typename Out, typename Compare>
 void STLSetDifference(const In1& a, const In2& b, Out* out, Compare compare) {
   // The qualified name avoids an ambiguity error, particularly with C++11:
-  assert(util::gtl::is_sorted(a.begin(), a.end(), compare));
-  assert(util::gtl::is_sorted(b.begin(), b.end(), compare));
+  assert(std::is_sorted(a.begin(), a.end(), compare));
+  assert(std::is_sorted(b.begin(), b.end(), compare));
   assert(static_cast<const void*>(&a) != static_cast<const void*>(out));
   assert(static_cast<const void*>(&b) != static_cast<const void*>(out));
   std::set_difference(a.begin(), a.end(), b.begin(), b.end(),
@@ -671,8 +666,8 @@ In1 STLSetDifference(const In1& a, const In1& b) {
 // See std::set_union() for how set union is computed.
 template<typename In1, typename In2, typename Out, typename Compare>
 void STLSetUnion(const In1& a, const In2& b, Out* out, Compare compare) {
-  assert(util::gtl::is_sorted(a.begin(), a.end(), compare));
-  assert(util::gtl::is_sorted(b.begin(), b.end(), compare));
+  assert(std::is_sorted(a.begin(), a.end(), compare));
+  assert(std::is_sorted(b.begin(), b.end(), compare));
   assert(static_cast<const void*>(&a) != static_cast<const void*>(out));
   assert(static_cast<const void*>(&b) != static_cast<const void*>(out));
   std::set_union(a.begin(), a.end(), b.begin(), b.end(),
@@ -730,8 +725,8 @@ In1 STLSetUnion(const In1& a, const In1& b) {
 template<typename In1, typename In2, typename Out, typename Compare>
 void STLSetSymmetricDifference(const In1& a, const In2& b, Out* out,
                                Compare compare) {
-  assert(util::gtl::is_sorted(a.begin(), a.end(), compare));
-  assert(util::gtl::is_sorted(b.begin(), b.end(), compare));
+  assert(std::is_sorted(a.begin(), a.end(), compare));
+  assert(std::is_sorted(b.begin(), b.end(), compare));
   assert(static_cast<const void*>(&a) != static_cast<const void*>(out));
   assert(static_cast<const void*>(&b) != static_cast<const void*>(out));
   std::set_symmetric_difference(a.begin(), a.end(), b.begin(), b.end(),
@@ -789,8 +784,8 @@ In1 STLSetSymmetricDifference(const In1& a, const In1& b) {
 // See std::set_intersection() for how set intersection is computed.
 template<typename In1, typename In2, typename Out, typename Compare>
 void STLSetIntersection(const In1& a, const In2& b, Out* out, Compare compare) {
-  assert(util::gtl::is_sorted(a.begin(), a.end(), compare));
-  assert(util::gtl::is_sorted(b.begin(), b.end(), compare));
+  assert(std::is_sorted(a.begin(), a.end(), compare));
+  assert(std::is_sorted(b.begin(), b.end(), compare));
   assert(static_cast<const void*>(&a) != static_cast<const void*>(out));
   assert(static_cast<const void*>(&b) != static_cast<const void*>(out));
   std::set_intersection(a.begin(), a.end(), b.begin(), b.end(),
@@ -836,8 +831,8 @@ In1 STLSetIntersection(const In1& a, const In1& b) {
 // must be sorted by the specified comparator, or by '<' if none is given.
 template<typename In1, typename In2, typename Compare>
 bool STLIncludes(const In1& a, const In2& b, Compare compare) {
-  assert(util::gtl::is_sorted(a.begin(), a.end(), compare));
-  assert(util::gtl::is_sorted(b.begin(), b.end(), compare));
+  assert(std::is_sorted(a.begin(), a.end(), compare));
+  assert(std::is_sorted(b.begin(), b.end(), compare));
   return std::includes(a.begin(), a.end(), b.begin(), b.end(), compare);
 }
 template<typename In1, typename In2>
@@ -862,8 +857,8 @@ template<typename InputIterator1, typename InputIterator2, typename Comp>
 bool SortedRangesHaveIntersection(InputIterator1 begin1, InputIterator1 end1,
                                   InputIterator2 begin2, InputIterator2 end2,
                                   Comp comparator) {
-  assert(util::gtl::is_sorted(begin1, end1, comparator));
-  assert(util::gtl::is_sorted(begin2, end2, comparator));
+  assert(std::is_sorted(begin1, end1, comparator));
+  assert(std::is_sorted(begin2, end2, comparator));
   while (begin1 != end1 && begin2 != end2) {
     if (comparator(*begin1, *begin2)) {
       ++begin1;
