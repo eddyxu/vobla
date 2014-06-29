@@ -1,14 +1,16 @@
 # Build Google Util
 
-set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC")
+set(CMAKE_CXX_FLAGS "-std=c++11 -funsigned-char -Wno-deprecated -Wno-char-subscripts")
 
 add_library(gutil
+	bits.cc
+	demangle.cc
 	file.cc
 	file_util.cc
 	int128.cc
+	mathlimits.cc
+	random.cc
 	stringprintf.cc
-	strtoint.cc
-	walltime.cc
 	strings/ascii_ctype.cc
 	strings/case.cc
 	strings/charset.cc
@@ -24,4 +26,6 @@ add_library(gutil
 	strings/strip.cc
 	strings/substitute.cc
 	strings/util.cc
+	strtoint.cc
+	walltime.cc
 	)
