@@ -1,5 +1,7 @@
 # Build Google Util
 
+set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC")
+
 add_library(gutil
 	file.cc
 	file_util.cc
