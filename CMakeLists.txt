@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(cmake_cpp11 CXX)
 
 include(cmake_modules/util.cmake)
+include(ExternalProject)
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wunused-value -std=c++11 -fPIC")
 
@@ -19,11 +20,17 @@ else ()
 	message(FATAL_ERROR "Your C++ compiler does not support C++11.")
 endif ()
 
-if (NOT EXISTS "test/gmock-1.7.0/")
-  execute_process(COMMAND mkdir -p ${CMAKE_SOURCE_DIR}/test )
-  execute_process(COMMAND wget https://googlemock.googlecode.com/files/gmock-1.7.0.zip -O ${CMAKE_SOURCE_DIR}/test/gmock.zip)
-  execute_process(COMMAND unzip gmock.zip WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test)
-endif()
+# Gmock
+ExternalProject_Add(googlemock
+    URL "https://googlemock.googlecode.com/files/gmock-1.7.0.zip"
+    SOURCE_DIR "${CMAKE_BINARY_DIR}/third_party/gmock"
+    INSTALL_COMMAND "")
+
+#if (NOT EXISTS "test/gmock-1.7.0/")
+#  execute_process(COMMAND mkdir -p ${CMAKE_SOURCE_DIR}/test )
+#  execute_process(COMMAND wget https://googlemock.googlecode.com/files/gmock-1.7.0.zip -O ${CMAKE_SOURCE_DIR}/test/gmock.zip)
+#  execute_process(COMMAND unzip gmock.zip WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test)
+#endif()
 
 find_package(boost)
 
