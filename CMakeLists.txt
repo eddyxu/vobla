@@ -4,7 +4,6 @@ project(cmake_cpp11 CXX)
 include(cmake_modules/util.cmake)
 include(ExternalProject)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wunused-value -std=c++11 -fPIC")
 
 include(CheckCXXCompilerFlag)
 # Compiler-specific C++11 activation.
@@ -25,6 +24,15 @@ ExternalProject_Add(googlemock
     URL "https://googlemock.googlecode.com/files/gmock-1.7.0.zip"
     SOURCE_DIR "${CMAKE_BINARY_DIR}/third_party/gmock"
     INSTALL_COMMAND "")
+ExternalProject_Get_Property(googlemock source_dir)
+include_directories(${source_dir}/include ${source_dir}/gtest/include)
+ExternalProject_Get_Property(googlemock binary_dir)
+message(${binary_dir})
+link_directories(${binary_dir} ${binary_dir}/gtest)
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wunused-value -std=c++11 -fPIC")
+set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DDEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-fno-strict-aliasing -O3 -DNDEBUG")
 
 #if (NOT EXISTS "test/gmock-1.7.0/")
 #  execute_process(COMMAND mkdir -p ${CMAKE_SOURCE_DIR}/test )
@@ -36,5 +44,4 @@ find_package(boost)
 
 enable_testing()
 include_directories(.)
-add_subdirectory(test/gmock-1.7.0)
 add_subdirectory(vobla)
