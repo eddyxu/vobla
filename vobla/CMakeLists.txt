@@ -1,7 +1,9 @@
 add_library (vobla
+	clock.cpp
 	command.cpp
-	sysinfo.cpp
 	status.cpp
+	sysinfo.cpp
+	timer.cpp
 	)
 
 include_directories(${gtest_SOURCE_DIR}/include)
