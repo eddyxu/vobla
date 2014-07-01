@@ -1,4 +1,4 @@
-cmake-cpp11
+Vobla
 ===========
 
 test a cmake project to support cpp11
