@@ -23,6 +23,7 @@ endif ()
 ExternalProject_Add(googlemock
     URL "https://googlemock.googlecode.com/files/gmock-1.7.0.zip"
     SOURCE_DIR "${CMAKE_BINARY_DIR}/third_party/gmock"
+    CMAKE_ARGS "-DCMAKE_CXX_COMPILER=${CMAKE_CXX_COMPILER}"
     INSTALL_COMMAND "")
 ExternalProject_Get_Property(googlemock source_dir)
 include_directories(${source_dir}/include ${source_dir}/gtest/include)
