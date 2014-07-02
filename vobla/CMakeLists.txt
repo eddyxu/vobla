@@ -7,7 +7,7 @@ add_library (vobla
 	)
 
 include_directories(${gtest_SOURCE_DIR}/include)
-include(../cmake_modules/util.cmake)
+include(${CMAKE_SOURCE_DIR}/cmake_modules/util.cmake)
 
 set(TEST_LIBS vobla gtest gmock_main)
 

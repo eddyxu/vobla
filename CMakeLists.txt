@@ -27,7 +27,6 @@ ExternalProject_Add(googlemock
 ExternalProject_Get_Property(googlemock source_dir)
 include_directories(${source_dir}/include ${source_dir}/gtest/include)
 ExternalProject_Get_Property(googlemock binary_dir)
-message(${binary_dir})
 link_directories(${binary_dir} ${binary_dir}/gtest)
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wunused-value -std=c++11 -fPIC")
@@ -40,8 +39,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "-fno-strict-aliasing -O3 -DNDEBUG")
 #  execute_process(COMMAND unzip gmock.zip WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/test)
 #endif()
 
-find_package(boost)
+find_package(Boost)
 
 enable_testing()
-include_directories(.)
+include_directories(${CMAKE_SOURCE_DIR})
 add_subdirectory(vobla)
