@@ -63,28 +63,28 @@ Status& Status::operator=(Status&& rhs) {
   return *this;
 }
 
-void Status::Set(int code, const string& new_msg) {
+void Status::set(int code, const string& new_msg) {
   code_ = code;
   message_ = new_msg;
 }
 
-void Status::SetError(int code) {
+void Status::set_error(int code) {
   code_ = code;
 }
 
-int Status::Error() const {
+int Status::error() const {
   return code_;
 }
 
-void Status::SetMessage(const string& new_msg) {
+void Status::set_message(const string& new_msg) {
   message_ = new_msg;
 }
 
-const string& Status::Message() const {
+const string& Status::message() const {
   return message_;
 }
 
-bool Status::Ok() const {
+bool Status::ok() const {
   return code_ == 0;
 }
 

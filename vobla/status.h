@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 (c) Lei Xu <eddyxu@gmail.com>
+ * Copyright 2014 (c) Lei Xu <eddyxu@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,22 +58,22 @@ class Status {
   Status& operator=(Status&& rhs);
 
   /// Returns the error code.
-  int Error() const;
+  int error() const;
 
   /// Sets the code and message to a new value.
-  void Set(int code, const std::string& message);
+  void set(int code, const std::string& message);
 
   /// Sets the new error code.
-  void SetError(int code);
+  void set_error(int code);
 
   /// Returns the error message.
-  const std::string& Message() const;
+  const std::string& message() const;
 
   /// Sets the new error message.
-  void SetMessage(const std::string& message);
+  void set_message(const std::string& message);
 
   /// Tests whether the error code is zero.
-  bool Ok() const;
+  bool ok() const;
 
   /// A static Status object to represent the OK status.
   static const Status OK;
