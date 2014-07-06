@@ -18,6 +18,9 @@
 #define VOBLA_COMMAND_H_
 
 #include <boost/utility.hpp>
+#include <functional>
+#include <map>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -38,8 +41,47 @@ class Command : boost::noncopyable {
 
   virtual Status Run() = 0;
 
-  virtual void PrintHelp() = 0;
+  virtual void PrintHelp();
+
+  virtual std::string usage() const { return usage_; }
+
+  virtual std::string description() const { return description_; }
+
+ protected:
+  std::string usage_;
+  std::string description_;
 };
+
+class HelpCommand : public Command {
+ public:
+  HelpCommand(CommandFactory* factory);
+
+  virtual ~HelpCommand();
+
+  virtual Status ParseArgs(int argc, char* argv);
+
+  virtual Status Run();
+
+ private:
+};
+
+class CommandFactory {
+ public:
+  void Add(const std::string& name, Command* command);
+
+  Command* Get(const std::string& name) const;
+
+  /**
+   * \brief Return all registered command names.
+   */
+  std::vector<std::string> GetNames() const;
+
+ private:
+  std::map<std::string, std::unique_ptr<Command>> commands_;
+};
+
+#define REGISTER_COMMAND(factory, name, cls) \
+    factory.Add(name, new cls());
 
 }  // namespace vobla
 

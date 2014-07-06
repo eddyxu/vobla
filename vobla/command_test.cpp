@@ -14,4 +14,35 @@
  * limitations under the License.
  */
 
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include <string>
+#include <vector>
+#include "vobla/command.h"
+#include "vobla/status.h"
+
+using ::testing::ElementsAre;
+
+namespace vobla {
+
+class TestCommand : public Command {
+ public:
+  Status ParseArgs(int argc, char* argv[]) {
+    (void) argc;
+    (void) argv;
+    return Status::OK;
+  }
+
+  Status Run() {
+    return Status::OK;
+  }
+};
+
+TEST(CommandFactoryTest, TestAddClass) {
+  CommandFactory factory;
+  REGISTER_COMMAND(factory, "test", TestCommand);
+  auto names = factory.GetNames();
+  EXPECT_THAT(names, ElementsAre("test"));
+}
+
+}

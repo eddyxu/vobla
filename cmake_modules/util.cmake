@@ -1,10 +1,5 @@
-if(NOT TARGET check)
-	add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
-endif()
-
 function(cxx_test name libs)
-	add_executable("${name}" EXCLUDE_FROM_ALL "${name}.cpp")
+	add_executable("${name}" "${name}.cpp")
 	target_link_libraries("${name}" "${libs}" -lpthread)
 	add_test("${name}" "${name}")
-	add_dependencies(check "${name}")
 endfunction()
