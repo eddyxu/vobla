@@ -26,12 +26,14 @@
 
 namespace vobla {
 
+class CommandFactory;
 class Status;
 
 /**
  * \brief Command interface.
  */
 class Command : boost::noncopyable {
+  friend class CommandFactory;
  public:
   Command();
 
@@ -47,7 +49,12 @@ class Command : boost::noncopyable {
 
   virtual std::string description() const { return description_; }
 
+  std::string program() { return program_; }
+
+  void set_program(const std::string& prog) { program_ = prog; }
+
  protected:
+  std::string program_;
   std::string usage_;
   std::string description_;
 };
@@ -58,11 +65,13 @@ class HelpCommand : public Command {
 
   virtual ~HelpCommand();
 
-  virtual Status ParseArgs(int argc, char* argv);
+  virtual Status ParseArgs(int argc, char* argv[]);
 
   virtual Status Run();
 
  private:
+  std::string sub_command_;
+  CommandFactory* factory_;
 };
 
 class CommandFactory {

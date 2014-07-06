@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+#include <getopt.h>
 #include <glog/logging.h>
+#include <cstdio>
 #include <map>
 #include <string>
 #include <vector>
@@ -45,7 +47,50 @@ void Command::PrintHelp() {
   }
 }
 
+HelpCommand::HelpCommand(CommandFactory* fact) : factory_(fact) {
+  CHECK_NOTNULL(factory_);
+}
+
+HelpCommand::~HelpCommand() {
+}
+
+Status HelpCommand::ParseArgs(int argc, char* argv[]) {
+  // TODO(eddyxu): Provide python-like ArgParse later?
+  int ch;
+  static struct option longopts[] = {
+    {"full", no_argument, 0, 0},
+    {"short", no_argument, 0, 1},
+    {0, 0, 0, 0},
+  };
+  while ((ch = getopt_long(argc, argv, "fs", longopts, NULL)) != -1) {
+    switch (ch) {
+      case 'f':
+        break;
+      default:
+        usage();
+    }
+  }
+  argc -= optind;
+  argv += optind;
+  if (argc > 0) {
+    sub_command_ = argv[0];
+  }
+  return Status::OK;
+}
+
 Status HelpCommand::Run() {
+  if (sub_command_.empty()) {
+    fprintf(stderr, "Usage: %s help [command|topics]", program_.c_str());
+  } else {
+    Command* command = factory_->Get(sub_command_);
+    if (command) {
+      command->PrintHelp();
+    } else {
+      fprintf(stderr, "Unknown command: %s\n", sub_command_.c_str());
+      return Status(-1, "Unknown command");
+    }
+  }
+  return Status::OK;
 }
 
 void CommandFactory::Add(const string& name, Command* command) {
@@ -55,7 +100,9 @@ void CommandFactory::Add(const string& name, Command* command) {
 
 Command* CommandFactory::Get(const std::string& name) const {
   auto iter = commands_.find(name);
-  CHECK(iter != commands_.end());
+  if (iter == commands_.end()) {
+    return nullptr;
+  }
   return iter->second.get();
 }
 
