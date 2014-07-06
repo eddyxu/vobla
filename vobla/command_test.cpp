@@ -45,4 +45,4 @@ TEST(CommandFactoryTest, TestAddClass) {
   EXPECT_THAT(names, ElementsAre("test"));
 }
 
-}
+}  // namespace vobla

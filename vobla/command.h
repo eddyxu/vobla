@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2014 (c) Lei Xu <eddyxu@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,9 +31,23 @@ class Status;
 
 /**
  * \brief Command interface.
+ *
+ * Provides a convinient way for command line oriented program to use
+ * sub-commands.
+ *
+ * E.g., /path/to/program foo --test arg1
+ *
+ * \code{.cpp}
+ * class ListCommand : public vobla::Command {
+ *    // ...
+ * };
+ *
+ * CommandFactory factory;
+ * REGISTER_COMMAND(factory, "list", ListCommand);
+ * REGISTER_COMMAND(factory, "list", GetCommand);
+ * \end{.cpp}
  */
 class Command : boost::noncopyable {
-  friend class CommandFactory;
  public:
   Command();
 
