@@ -36,6 +36,9 @@ class Status {
   /// obtained from strerror(2).
   static Status system_error(int errnum);
 
+  /// Construct a Status object using 'errno'. See system_error(errnum).
+  static Status system_error();
+
   /// The default constructor builds a success status (error_code == 0)
   Status() = default;
 

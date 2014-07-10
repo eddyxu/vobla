@@ -49,9 +49,7 @@
 #include <stddef.h>
 
 #include <glog/logging.h>
-#include "vobla/gutil/logging-inl.h"  // for CHECK macros
 #include <type_traits>
-#include "vobla/gutil/std_namespace.h"  // for remove_pointer
 
 // This is used internally by all instances of linked_ptr<>.  It needs to be
 // a non-template class because different types of linked_ptr<> can refer to

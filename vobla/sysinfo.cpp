@@ -31,6 +31,7 @@
 #include <libproc.h>
 #endif /* __APPLE__ */
 #include <string>
+#include "vobla/gutil/stringprintf.h"
 #include "vobla/sysinfo.h"
 
 namespace vobla {
@@ -44,7 +45,7 @@ double SysInfo::GetCpuFrequency() {
   if (cpufreq_)
     return cpufreq_;
 
-  FILE *fp;
+  FILE* fp;
   char buffer[BUFSIZE];
 #if defined(linux) || defined(__linux__)
   if ((fp = fopen("/proc/cpuinfo", "r")) == nullptr) {
@@ -138,12 +139,14 @@ pid_t SysInfo::GetParentPid(pid_t pid) {
     return -1;
   return info.kp_eproc.e_ppid;
 #elif defined(__linux__)
-  char proc_filepath[BUFSIZE];
   char buffer[BUFSIZE];
+  string proc_filepath = StringPrintf("/proc/%d/status", pid)
   pid_t parent = -1;
-  memset(proc_filepath, 0, BUFSIZE);
-  snprintf(proc_filepath, BUFSIZE, "/proc/%d/status", pid);
-  FILE * fp = fopen(proc_filepath, "r");
+  FILE* fp = fopen(proc_filepath.c_str(), "r");
+  if (!fp) {
+    VLOG(1) << "Failed to open " << proc_filepath << strerror(errno);
+    return parent;
+  }
   while (fgets(buffer, BUFSIZE, fp) != nullptr) {
     if (strncmp(buffer, "PPid:", 5) == 0) {
       sscanf(buffer, "PPid: %d", &parent);  // NOLINT
@@ -170,7 +173,7 @@ int SysInfo::GetProcessName(pid_t pid, string* name) {
   memset(proc_filepath, 0, BUFSIZE);
   memset(line, 0, BUFSIZE);
   snprintf(proc_filepath, BUFSIZE, "/proc/%d/cmdline", pid);
-  FILE *fp = fopen(proc_filepath, "r");
+  FILE* fp = fopen(proc_filepath, "r");
   if (!fp) {
     perror("get_process_name: failed to open /proc/<pid>/cmdline");
     return -1;
@@ -181,7 +184,7 @@ int SysInfo::GetProcessName(pid_t pid, string* name) {
     fclose(fp);
     return -1;
   }
-  char *pos = strrchr(line, '/');
+  char* pos = strrchr(line, '/');
   if (pos) {
     *name = pos+1;
   } else {

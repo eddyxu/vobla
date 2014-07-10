@@ -15,6 +15,7 @@
  */
 
 #include "vobla/status.h"
+#include <sys/errno.h>
 #include <cstring>
 #include <string>
 #include <utility>
@@ -24,6 +25,10 @@ using std::string;
 namespace vobla {
 
 const Status Status::OK = Status();
+
+Status Status::system_error() {
+  return system_error(errno);
+}
 
 Status Status::system_error(int errnum) {
   return Status(-errnum, strerror(errnum));

@@ -24,7 +24,6 @@
 #include <sys/stat.h>
 
 #include <glog/logging.h>
-#include "vobla/gutil/logging-inl.h"
 
 // Returns true if a uint64 actually looks like a negative int64. This checks
 // if the most significant bit is one.

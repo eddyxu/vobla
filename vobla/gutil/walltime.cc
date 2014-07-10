@@ -21,8 +21,6 @@
 
 #include "vobla/gutil/walltime.h"
 #include <glog/logging.h>
-#include "vobla/gutil/logging-inl.h"
-
 #include <stdio.h>
 #include <string.h>
 

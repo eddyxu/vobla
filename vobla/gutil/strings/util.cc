@@ -13,14 +13,11 @@
 #include <string.h>
 #include <time.h>           // for FastTimeToBuffer()
 #include <algorithm>
-#include "vobla/gutil/std_namespace.h"
 #include <string>
-namespace vobla {using std::string; }
 #include <vector>
 using std::vector;
 
 #include <glog/logging.h>
-#include "vobla/gutil/logging-inl.h"
 #include "vobla/gutil/strings/ascii_ctype.h"
 #include "vobla/gutil/strings/numbers.h"
 #include "vobla/gutil/strings/stringpiece.h"

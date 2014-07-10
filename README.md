@@ -8,6 +8,7 @@ Requirements
  * g++ 4.8+
  * cmake 2.8+
  * Boost 1.54+
+ * Glog
 
 Build
 -------
