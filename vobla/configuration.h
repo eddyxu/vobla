@@ -27,18 +27,17 @@ class Configuration {
 
   virtual ~Configuration();
 
-  virtual bool hasKey(const Key& key)  = 0;
+  virtual bool Has(const Key& key)  = 0;
 
   /**
    * \brief Gets boolean value.
-   *
    * It accepts 'yes', 'true' or '1' as true.
    */
-  virtual bool getBool(const Key& key) = 0;
+  virtual bool GetBool(const Key& key) = 0;
 
-  virtual long getLong(const Key& key) = 0;
+  virtual long GetLong(const Key& key) = 0;
 
-  virtual int getInt(const Key& key) = 0;
+  virtual int GetInt(const Key& key) = 0;
 
   virtual std::string get(const Key& key) = 0;
 };

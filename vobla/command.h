@@ -75,7 +75,7 @@ class Command : boost::noncopyable {
 
 class HelpCommand : public Command {
  public:
-  HelpCommand(CommandFactory* factory);
+  explicit HelpCommand(CommandFactory* factory);
 
   virtual ~HelpCommand();
 
