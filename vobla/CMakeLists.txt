@@ -6,6 +6,7 @@ add_subdirectory(gutil)
 add_library (vobla
 	clock.cpp
 	command.cpp
+	configuration.cpp
 	status.cpp
 	sysinfo.cpp
 	timer.cpp
