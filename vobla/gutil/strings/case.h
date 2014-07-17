@@ -14,7 +14,6 @@
 #include <strings.h>
 #include <functional>
 #include <string>
-namespace vobla {using std::string; }
 
 #include "vobla/gutil/strings/memutil.h"
 #include "vobla/gutil/strings/stringpiece.h"

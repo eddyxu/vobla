@@ -17,29 +17,40 @@
 #ifndef VOBLA_CONFIGURATION_H_
 #define VOBLA_CONFIGURATION_H_
 
+#include <exception>
 #include <string>
 
 namespace vobla {
+
+class Status;
 
 class Configuration {
  public:
   typedef std::string Key;
 
+  class BadValueException : public std::exception {
+  };
+
+  class KeyNotFoundException : public std::exception {
+  };
+
   virtual ~Configuration();
 
-  virtual bool Has(const Key& key)  = 0;
+  virtual Status Load(const std::string& path) = 0;
+
+  virtual bool Has(const Key& key) = 0;
 
   /**
    * \brief Gets boolean value.
    * It accepts 'yes', 'true' or '1' as true.
    */
-  virtual bool GetBool(const Key& key) = 0;
+  virtual bool GetBool(const Key& key) const;
 
-  virtual long GetLong(const Key& key) = 0;
+  virtual int64_t GetInt64(const Key& key) const;
 
-  virtual int GetInt(const Key& key) = 0;
+  virtual int GetInt(const Key& key) const;
 
-  virtual std::string get(const Key& key) = 0;
+  virtual std::string Get(const Key& key) const = 0;
 };
 
 }  // namespace vobla

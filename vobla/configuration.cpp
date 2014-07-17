@@ -15,8 +15,10 @@
  */
 
 #include "vobla/configuration.h"
+#include <boost/lexical_cast.hpp>
 #include <string>
 #include <unordered_map>
+#include "vobla/gutil/strings/case.h"
 
 using std::string;
 using std::unordered_map;
@@ -26,4 +28,32 @@ namespace vobla {
 Configuration::~Configuration() {
 }
 
+bool Configuration::GetBool(const Key& key) const {
+  string v = strings::ToLower(Get(key));
+  if (v == "1" || v == "true" || v == "yes") {
+    return true;
+  } else if (v == "0" || v == "false" || v == "no") {
+    return false;
+  }
+  throw BadValueException();
 }
+
+int Configuration::GetInt(const Key& key) const {
+  try {
+    string v = Get(key);
+    return boost::lexical_cast<int64_t>(v);
+  } catch (boost::bad_lexical_cast e) {
+    throw BadValueException();
+  }
+}
+
+int64_t Configuration::GetInt64(const Key& key) const {
+  try {
+    string v = Get(key);
+    return boost::lexical_cast<int64_t>(v);
+  } catch (boost::bad_lexical_cast e) {
+    throw BadValueException();
+  }
+}
+
+}  // namespace vobla
