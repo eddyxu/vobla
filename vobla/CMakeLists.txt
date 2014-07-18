@@ -12,7 +12,7 @@ add_library (vobla
 	sysinfo.cpp
 	timer.cpp
 	)
-target_link_libraries(vobla glog)
+target_link_libraries(vobla glog crypto)
 
 set(TEST_LIBS vobla gtest gmock_main)
 

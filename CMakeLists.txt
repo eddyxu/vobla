@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(cmake_cpp11 CXX)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake_modules)
 include(cmake_modules/util.cmake)
+
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -pedantic -Wunused-value -std=c++11 -fPIC")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -O0 -DDEBUG")
@@ -33,6 +35,8 @@ ExternalProject_Get_Property(googlemock binary_dir)
 link_directories(${binary_dir} ${binary_dir}/gtest)
 
 find_package(Boost)
+find_package(Glog)
+find_package(OpenSSL)
 
 enable_testing()
 include_directories(${CMAKE_SOURCE_DIR})

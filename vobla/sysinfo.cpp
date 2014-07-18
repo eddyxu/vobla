@@ -15,6 +15,7 @@
  */
 
 #include <fcntl.h>
+#include <glog/logging.h>
 #if defined(linux) || defined(__linux__)
 #include <linux/fs.h>
 #endif
@@ -140,7 +141,7 @@ pid_t SysInfo::GetParentPid(pid_t pid) {
   return info.kp_eproc.e_ppid;
 #elif defined(__linux__)
   char buffer[BUFSIZE];
-  string proc_filepath = StringPrintf("/proc/%d/status", pid)
+  string proc_filepath = StringPrintf("/proc/%d/status", pid);
   pid_t parent = -1;
   FILE* fp = fopen(proc_filepath.c_str(), "r");
   if (!fp) {
