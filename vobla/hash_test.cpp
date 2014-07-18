@@ -13,10 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * \file vobla/hash_test.cpp
- * \brief Unit tests for Hash Digests.
- */
 
 #include <gtest/gtest.h>
 #include <string>
