@@ -64,16 +64,16 @@ class BaseHashDigest {
   }
 
   /// Resets the value of this hash from the new content.
-  virtual void reset(const std::string& buffer);
+  virtual void Reset(const std::string& buffer);
 
   /// Initial this digest for feeding data.
-  virtual void init() = 0;
+  virtual void Init() = 0;
 
   /// Feeds data to this hash digest.
-  virtual void update(const std::string& buffer) = 0;
+  virtual void Update(const std::string& buffer) = 0;
 
   /// Finalize the data feeding process.
-  virtual void final() = 0;
+  virtual void Final() = 0;
 
   /// get underlay digest array.
   const unsigned char* digest() const { return digest_.data(); }
@@ -82,7 +82,7 @@ class BaseHashDigest {
   std::string hexdigest() const;
 
   /// parse the digest from a hexadecimal format string
-  void parse_hexdigest(const std::string& hash_str);
+  void ParseHexdigest(const std::string& hash_str);
 
  protected:
   // Disallow to create base digest directly.
@@ -114,16 +114,16 @@ class MD5Digest : public BaseHashDigest<MD5_CTX, 16> {
   ~MD5Digest();
 
   /// Initializes a SHA1Digest update.
-  void init();
+  void Init();
 
   /// Updates the content.
-  void update(const std::string& buf);
+  void Update(const std::string& buf);
 
   /**
    * \brief Finalizes the MD5Digest content generation and move the MD5 value
    * to the digest_ field.
    */
-  void final();
+  void Final();
 };
 
 /**
@@ -145,16 +145,16 @@ class SHA1Digest : public BaseHashDigest<SHA_CTX, 20> {
   ~SHA1Digest();
 
   /// Initializes a SHA1Digest update.
-  void init();
+  void Init();
 
   /// Updates the content.
-  void update(const std::string& buffer);
+  void Update(const std::string& buffer);
 
   /**
    * \brief Finalizes the SHA1Digest content generation and move the SHA1 value
    * to the digest_ field.
    */
-  void final();
+  void Final();
 };
 
 template <typename Ctx, size_t L>
@@ -175,10 +175,10 @@ BaseHashDigest<Ctx, L>& BaseHashDigest<Ctx, L>::operator=(
 }
 
 template <typename Ctx, size_t L>
-void BaseHashDigest<Ctx, L>::reset(const std::string& buf) {
-  init();
-  update(buf);
-  final();
+void BaseHashDigest<Ctx, L>::Reset(const std::string& buf) {
+  Init();
+  Update(buf);
+  Final();
 }
 
 template <typename Ctx, size_t L>

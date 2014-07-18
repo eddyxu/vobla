@@ -1,5 +1,5 @@
 /*
- * Copyright 2011-2014 (c) Lei Xu <eddyxu@gmail.com>
+ * Copyright 2014 (c) Lei Xu <eddyxu@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ TEST(HashDigestTest, MD5Create) {
   const string buf("This is a buffer.");
   MD5Digest md5_0(buf);
   MD5Digest md5_3;
-  md5_3.reset(buf);
+  md5_3.Reset(buf);
   EXPECT_EQ(md5_3, md5_0);
 
   MD5Digest md5_2("abcdefg\n");
@@ -41,7 +41,7 @@ TEST(HashDigestTest, SHA1Create) {
   const string buf("SHA1's buffer");
   SHA1Digest sha1_0(buf);
   SHA1Digest sha1_1;
-  sha1_1.reset(buf);
+  sha1_1.Reset(buf);
   EXPECT_EQ(sha1_0, sha1_1);
 
   SHA1Digest sha1_2("abcdefg\n");
