@@ -14,11 +14,6 @@
  * limitations under the License.
  */
 
-/**
- * \file vobla/sysinfo.h
- * \brief Get system information
- */
-
 #ifndef VOBLA_SYSINFO_H_
 #define VOBLA_SYSINFO_H_
 
