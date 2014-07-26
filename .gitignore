@@ -16,3 +16,6 @@
 /build/
 test
 .DS_Store
+
+*.pyc
+*.swp
