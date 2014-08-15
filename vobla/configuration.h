@@ -40,17 +40,29 @@ class Configuration {
 
   virtual bool Has(const Key& key) = 0;
 
+  virtual std::string Get(const Key& key) const = 0;
+
+  virtual std::string Set(const Key& key, const std::string& value) = 0;
+
   /**
    * \brief Gets boolean value.
    * It accepts 'yes', 'true' or '1' as true.
    */
   virtual bool GetBool(const Key& key) const;
 
+  virtual void SetBool(const Key& key, bool value);
+
   virtual int64_t GetInt64(const Key& key) const;
+
+  virtual void SetInt64(const Key& key, int64_t value);
 
   virtual int GetInt(const Key& key) const;
 
-  virtual std::string Get(const Key& key) const = 0;
+  virtual void SetInt(const Key& key, int value);
+
+  virtual double GetDouble(const Key& key) const;
+
+  virtual double SetDouble(const Key& key, double value);
 };
 
 }  // namespace vobla

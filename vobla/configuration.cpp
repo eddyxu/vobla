@@ -15,10 +15,10 @@
  */
 
 #include "vobla/configuration.h"
+#include "vobla/gutil/strings/case.h"
 #include <boost/lexical_cast.hpp>
 #include <string>
 #include <unordered_map>
-#include "vobla/gutil/strings/case.h"
 
 using std::string;
 using std::unordered_map;
@@ -38,22 +38,47 @@ bool Configuration::GetBool(const Key& key) const {
   throw BadValueException();
 }
 
+void Configuration::SetBool(const Key& key, bool value) {
+  Set(key, value ? "true" : "false");
+}
+
 int Configuration::GetInt(const Key& key) const {
   try {
     string v = Get(key);
     return boost::lexical_cast<int64_t>(v);
-  } catch (boost::bad_lexical_cast e) {
+  } catch (const boost::bad_lexical_cast& e) {
     throw BadValueException();
   }
+}
+
+void Configuration::SetInt(const Key& key, int value) {
+  Set(key, std::to_string(value));
 }
 
 int64_t Configuration::GetInt64(const Key& key) const {
   try {
     string v = Get(key);
     return boost::lexical_cast<int64_t>(v);
-  } catch (boost::bad_lexical_cast e) {
+  } catch (const boost::bad_lexical_cast& e) {
     throw BadValueException();
   }
+}
+
+void Configuration::SetInt64(const Key& key, int64_t value) {
+  Set(key, std::to_string(value));
+}
+
+double Configuration::GetDouble(const Key& key) const {
+  try {
+    string v = Get(key);
+    return boost::lexical_cast<double>(v);
+  } catch (const boost::bad_lexical_cast& e) {
+    throw BadValueException();
+  }
+}
+
+double Configuration::SetDouble(const Key& key, double value) {
+  Set(key, std::to_string(value));
 }
 
 }  // namespace vobla
