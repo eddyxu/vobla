@@ -43,15 +43,17 @@ flags = [
 # For a C project, you would set this to 'c' instead of 'c++'.
 '-x',
 'c++',
-'-I.',
-'-I./build/third_party/gmock/include',
-'-I./build/third_party/gmock/gtest/include',
+'-I', '.',
+'-I',
+'./build/third_party/gmock/include',
+'-I',
+'./build/third_party/gmock/gtest/include',
 '-isystem',
 '/usr/include',
 '-isystem',
 '/usr/local/include',
 '-isystem',
-'/Library/Developer/CommandLineTools/usr/lib/c++/v1',
+'/Library/Developer/CommandLineTools/usr/include/c++/v1'
 ]
 
 

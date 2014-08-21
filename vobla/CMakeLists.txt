@@ -7,6 +7,7 @@ add_library (vobla
 	clock.cpp
 	command.cpp
 	configuration.cpp
+	file.cpp
 	hash.cpp
 	status.cpp
 	sysinfo.cpp
