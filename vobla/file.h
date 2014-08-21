@@ -39,6 +39,6 @@ class File {
   int fd_ = 0;
 };
 
-}
+}  // namespace vobla
 
 #endif  // VOBLA_FILE_H_
