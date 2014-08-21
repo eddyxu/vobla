@@ -49,4 +49,4 @@ int File::fd() const {
   return fd_;
 }
 
-}  // namespace vobla
+}  // namespace
