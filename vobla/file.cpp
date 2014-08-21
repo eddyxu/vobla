@@ -17,13 +17,33 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <memory>
 #include <string>
 #include "vobla/file.h"
 #include "vobla/status.h"
 
 using std::string;
+using std::unique_ptr;
 
 namespace vobla {
+
+File* File::Open(const std::string& uri, int oflags) {
+  unique_ptr<File> file(new File());
+  Status status = file->open(uri, oflags);
+  if (status.ok()) {
+    return file.release();
+  }
+  return nullptr;
+}
+
+File* File::Create(const std::string& uri) {
+  unique_ptr<File> file(new File);
+  Status status = file->open(uri, O_CREAT);
+  if (status.ok()) {
+    return file.release();
+  }
+  return nullptr;
+}
 
 File::~File() {
   this->close();
@@ -49,4 +69,4 @@ int File::fd() const {
   return fd_;
 }
 
-}  // namespace
+}  // namespace vobla

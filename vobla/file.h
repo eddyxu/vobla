@@ -23,14 +23,24 @@ namespace vobla {
 
 class Status;
 
+/**
+ * Encapsure File related operations.
+ */
 class File {
  public:
+  // Factory methods.
+  static File* Open(const std::string& uri, int oflags);
+
+  static File* Create(const std::string& uri);
+
   File() = default;
 
   virtual ~File();
 
+  /** Opens a URI and returns the operation status */
   virtual Status open(const std::string& uri, int oflag);
 
+  /** Close an opened file */
   virtual Status close();
 
   int fd() const;
