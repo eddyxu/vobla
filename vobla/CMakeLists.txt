@@ -14,12 +14,14 @@ add_library (vobla
 	)
 target_link_libraries(vobla ${GLOG_LIBRARIES} crypto)
 
-set(TEST_LIBS vobla ${GLOG_LIBRARIES} gtest gmock_main)
+if (VOBLA_TEST)
+	set(TEST_LIBS vobla ${GLOG_LIBRARIES} gtest gmock_main)
 
-file(GLOB TEST_FILES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
-	"${CMAKE_CURRENT_SOURCE_DIR}/*_test.cpp")
+	file(GLOB TEST_FILES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
+		"${CMAKE_CURRENT_SOURCE_DIR}/*_test.cpp")
 
-foreach(testFile ${TEST_FILES})
-	string(REGEX REPLACE ".cpp\$" "" testName "${testFile}")
-	cxx_test("${testName}" "${TEST_LIBS}")
-endforeach(testFile)
+	foreach(testFile ${TEST_FILES})
+		string(REGEX REPLACE ".cpp\$" "" testName "${testFile}")
+		cxx_test("${testName}" "${TEST_LIBS}")
+	endforeach(testFile)
+endif()
