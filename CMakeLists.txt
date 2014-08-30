@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(cmake_cpp11 CXX)
+project(vobla)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake_modules)
 include(cmake_modules/util.cmake)
@@ -34,9 +34,11 @@ include_directories(${source_dir}/include ${source_dir}/gtest/include)
 ExternalProject_Get_Property(googlemock binary_dir)
 link_directories(${binary_dir} ${binary_dir}/gtest)
 
-find_package(Boost)
-find_package(Glog)
-find_package(OpenSSL)
+find_package(Boost REQUIRED)
+find_package(Glog REQUIRED)
+find_package(OpenSSL REQUIRED)
+
+include_directories(SYSTEM ${Boost_INCLUDE_DIR} ${GLOG_INCLUDE_DIR})
 
 enable_testing()
 include_directories(${CMAKE_SOURCE_DIR})

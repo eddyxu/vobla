@@ -12,9 +12,9 @@ add_library (vobla
 	sysinfo.cpp
 	timer.cpp
 	)
-target_link_libraries(vobla glog crypto)
+target_link_libraries(vobla ${GLOG_LIBRARIES} crypto)
 
-set(TEST_LIBS vobla gtest gmock_main)
+set(TEST_LIBS vobla ${GLOG_LIBRARIES} gtest gmock_main)
 
 file(GLOB TEST_FILES RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}"
 	"${CMAKE_CURRENT_SOURCE_DIR}/*_test.cpp")
